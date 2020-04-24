@@ -19,12 +19,14 @@ const AppNavigator = createStackNavigator(
     },
   },
   {
-    mode: 'modal',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: Colors.primaryColor,
       },
       headerTintColor: 'white',
+      headerTitleStyle: {
+        fontSize: 16,
+      },
     },
   }
 );

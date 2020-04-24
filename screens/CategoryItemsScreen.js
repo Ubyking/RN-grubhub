@@ -1,30 +1,38 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { CATEGORIES } from '../data/dummydata';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
+
+import ListItem from '../components/ListItem';
+
+import { CATEGORIES, MEALS } from '../data/dummydata';
 
 const CategoryItemsScreen = (props) => {
   const catId = props.navigation.getParam('categoryId');
 
-  const selectCategory = CATEGORIES.find((cat) => cat.id === catId);
+  const displayItems = MEALS.filter(
+    (meal) => meal.categroryIds.indexOf(catId) >= 0
+  );
+
+  const renderItemHandler = (itemData) => {
+    return (
+      <ListItem
+        title={itemData.item.title}
+        image={itemData.item.imageUrl}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        onSelectItem={() => {}}
+      />
+    );
+  };
 
   return (
     <View style={styles.screenContainer}>
-      <Text>Category Items Screen</Text>
-      <Text>Selected Category: {selectCategory.title}</Text>
-      <View style={styles.buttonStyle}>
-        <Button
-          title='Item Details screen'
-          onPress={() =>
-            props.navigation.navigate({ routeName: 'ItemDetailsScreen' })
-          }
-        />
-      </View>
-      <View style={styles.buttonStyle}>
-        <Button
-          title='Go back to Categories'
-          onPress={() => props.navigation.goBack()}
-        />
-      </View>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={displayItems}
+        renderItem={renderItemHandler}
+        style={{ width: '100%' }}
+      />
     </View>
   );
 };
@@ -41,6 +49,7 @@ CategoryItemsScreen.navigationOptions = (navigationData) => {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+    margin: 7,
     alignItems: 'center',
     justifyContent: 'center',
   },
