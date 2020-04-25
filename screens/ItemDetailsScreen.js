@@ -1,24 +1,38 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
+import { MEALS } from '../data/dummydata';
+import CustomHeaderButton from '../components/CustomHeaderButton';
 
 const ItemDetailsScreen = (props) => {
+  const itemId = props.navigation.getParam('itemId');
+
+  const selectMeal = MEALS.find((meal) => meal.id === itemId);
+
   return (
     <View style={styles.screenContainer}>
-      <Text>Items Details Screen</Text>
-      <View style={styles.buttonStyle}>
-        <Button
-          title='Go back to Category Items'
-          onPress={() => props.navigation.goBack()}
-        />
-      </View>
-      <View style={styles.buttonStyle}>
-        <Button
-          title='Go back to Categories (home)'
-          onPress={() => props.navigation.popToTop()}
-        />
-      </View>
+      <Text>{selectMeal.title}</Text>
     </View>
   );
+};
+
+ItemDetailsScreen.navigationOptions = (navigationData) => {
+  const itemId = navigationData.navigation.getParam('itemId');
+  const selectMeal = MEALS.find((meal) => meal.id === itemId);
+
+  return {
+    headerTitle: selectMeal.title,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title='favourite'
+          iconName='ios-star'
+          onPress={() => console.log('marked as favourite')}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({

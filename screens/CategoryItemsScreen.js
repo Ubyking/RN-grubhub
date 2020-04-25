@@ -20,7 +20,14 @@ const CategoryItemsScreen = (props) => {
         duration={itemData.item.duration}
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
-        onSelectItem={() => {}}
+        onSelectItem={() => {
+          props.navigation.navigate({
+            routeName: 'ItemDetailsScreen',
+            params: {
+              itemId: itemData.item.id,
+            },
+          });
+        }}
       />
     );
   };
