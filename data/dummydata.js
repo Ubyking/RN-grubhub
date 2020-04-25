@@ -21,7 +21,8 @@ export const MEALS = [
     'Spaghetti Bolognese',
     'affordable',
     'simple',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+    'https://d3eh3svpl1busq.cloudfront.net/VgPGwNuUyfELysSlZGVbTvAFROFEIWmE/assets/static/optimized/wp-content/uploads/2015/02/07f684e22c0a8fdbe96986ca6da1c3cc.Quick-Easy-Spaghetti-Bolognese2-1.jpg',
+    //'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
     20,
     [
       '4 Tomatoes',
@@ -49,22 +50,21 @@ export const MEALS = [
   new Meal(
     'm2',
     ['c2'],
-    'Hawaii Brioche',
-    'affordable',
-    'simple',
-    'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
+    'Grilled Cheese on Sourdough',
+    'pricey',
+    'Rustic',
+    'https://www.thehandbook.com/cdn-cgi/image/width=960,height=560,fit=cover,q=85/https://files.thehandbook.com/uploads/2020/02/deeneys-1200x683.jpg',
     10,
     [
-      '1 Slice Brioche Bread',
+      '4 Slices Sourdough Bread',
       '1 Slice Ham',
-      '1 Slice Pineapple',
-      '1-2 Slices of Cheese',
+      '1-2 Slices of posh Cheese',
       'Butter',
     ],
     [
       'Butter one side of the white bread',
-      'Layer ham, the pineapple and cheese on the white bread',
-      'Bake the toast for round about 10 minutes in the oven at 200°C',
+      'Layer stuff and cheese on the white partially toasted bread',
+      'Further Bake the toast for round about 10 minutes in the oven at 200°C',
     ],
     false,
     false,
@@ -78,7 +78,7 @@ export const MEALS = [
     'Classic Hamburger',
     'pricey',
     'simple',
-    'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
+    'https://media-cdn.tripadvisor.com/media/photo-p/1a/33/74/f5/gourmet-burger.jpg',
     45,
     [
       '300g Cattle Hack',
@@ -137,10 +137,10 @@ export const MEALS = [
   new Meal(
     'm5',
     ['c2', 'c5', 'c10'],
-    'Salad with Smoked Salmon',
+    'Smoked Salmonand Cranberry salad',
     'luxurious',
     'simple',
-    'https://cdn.pixabay.com/photo/2016/10/25/13/29/smoked-salmon-salad-1768890_1280.jpg',
+    'https://www.truenorthseafood.com/cms/wp-content/uploads/2017/04/cranberrysmokedsalmonsalad.jpg',
     15,
     [
       'Arugula',
@@ -169,10 +169,10 @@ export const MEALS = [
   new Meal(
     'm6',
     ['c6', 'c10'],
-    'Delicious Orange Mousse',
+    'Tiramisu',
     'affordable',
     'hard',
-    'https://cdn.pixabay.com/photo/2017/05/01/05/18/pastry-2274750_1280.jpg',
+    'https://images.food52.com/NrE2pYXzRvc5YK_FztOMjFyxAaM=/2016x1344/filters:format(webp)/ca368c54-aa0b-4f55-900b-720ba4ab5aad--IMG_5881_web.jpg',
     240,
     [
       '4 Sheets of Gelatine',
@@ -234,7 +234,7 @@ export const MEALS = [
     'Fiery Chicken Curry',
     'pricey',
     'challenging',
-    'https://cdn.pixabay.com/photo/2018/06/18/16/05/indian-food-3482749_1280.jpg',
+    'https://i.ndtvimg.com/i/2015-11/indian-food-625_625x350_51448018868.jpg',
     35,
     [
       '4 Chicken Breasts',
@@ -266,7 +266,7 @@ export const MEALS = [
     'Chocolate Souffle',
     'affordable',
     'hard',
-    'https://cdn.pixabay.com/photo/2014/08/07/21/07/souffle-412785_1280.jpg',
+    'https://www.saga.co.uk/contentlibrary/saga/publishing/verticals/food/recipes/baking/chestnut-chocolate-souffle-shutterstock.jpg',
     45,
     [
       '1 Teaspoon melted Butter',
@@ -312,7 +312,7 @@ export const MEALS = [
     'Asparagus Salad',
     'luxurious',
     'simple',
-    'https://cdn.pixabay.com/photo/2018/04/09/18/26/asparagus-3304997_1280.jpg',
+    'https://www.dimitrasdishes.com/wp-content/uploads/2019/05/asparagus-salad-1_orig.jpg',
     30,
     [
       'White and Green Asparagus',
