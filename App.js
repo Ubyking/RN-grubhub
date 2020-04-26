@@ -3,11 +3,21 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { enableScreens } from 'react-native-screens';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
 import AppNavigator from './navigation/AppNavigator';
+import mealsReducer from './store/reducers/mealsReducer';
 
 // important call
 enableScreens();
+
+const rootReducer = combineReducers({
+  mealsReducer: mealsReducer,
+});
+
+// create the redux store
+const store = createStore(rootReducer);
 
 const loadCustomFonts = () => {
   return Font.loadAsync({
@@ -28,7 +38,11 @@ export default function App() {
     );
   }
 
-  return <AppNavigator />;
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector } from 'react-redux';
 
-import { MEALS } from '../data/dummydata';
 import CustomHeaderButton from '../components/CustomHeaderButton';
 
 const CustomItem = (props) => {
@@ -14,9 +14,13 @@ const CustomItem = (props) => {
 };
 
 const ItemDetailsScreen = (props) => {
+  const availableMeals = useSelector((state) => state.mealsReducer.meals);
   const itemId = props.navigation.getParam('itemId');
+  const selectMeal = availableMeals.find((meal) => meal.id === itemId);
 
-  const selectMeal = MEALS.find((meal) => meal.id === itemId);
+  useEffect(() => {
+    props.navigation.setParams({ mealTitle: selectMeal.title });
+  }, [selectMeal]);
 
   return (
     <View style={styles.screenContainer}>
@@ -53,10 +57,10 @@ const ItemDetailsScreen = (props) => {
 
 ItemDetailsScreen.navigationOptions = (navigationData) => {
   const itemId = navigationData.navigation.getParam('itemId');
-  const selectMeal = MEALS.find((meal) => meal.id === itemId);
+  const mealTitle = navigationData.navigation.getParam('mealTitle');
 
   return {
-    headerTitle: selectMeal.title,
+    headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
