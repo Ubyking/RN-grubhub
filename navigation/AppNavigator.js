@@ -50,7 +50,7 @@ const FiltersStackNavigator = createStackNavigator(
     defaultNavigationOptions: {
       headerStyle: {
         height: 65,
-        backgroundColor: Colors.extrasColor,
+        backgroundColor: Colors.primaryColor,
       },
       headerTintColor: 'white',
       headerTitleStyle: {
