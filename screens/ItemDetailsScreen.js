@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CustomHeaderButton from '../components/CustomHeaderButton';
+import { toggleFavourite } from '../store/actions/MealsActions';
 
 const CustomItem = (props) => {
   return (
@@ -16,11 +17,28 @@ const CustomItem = (props) => {
 const ItemDetailsScreen = (props) => {
   const availableMeals = useSelector((state) => state.mealsReducer.meals);
   const itemId = props.navigation.getParam('itemId');
+  const isFavoured = useSelector((state) =>
+    state.mealsReducer.favouriteMeals.some((meal) => meal.id === itemId)
+  );
+
   const selectMeal = availableMeals.find((meal) => meal.id === itemId);
 
+  const dispatch = useDispatch();
+
+  const toggleFavouriteHandler = useCallback(() => {
+    dispatch(toggleFavourite(itemId));
+  }, [dispatch, itemId]);
+
   useEffect(() => {
-    props.navigation.setParams({ mealTitle: selectMeal.title });
-  }, [selectMeal]);
+    props.navigation.setParams({
+      mealTitle: selectMeal.title,
+      toggleFavourite: toggleFavouriteHandler,
+    });
+  }, [selectMeal, toggleFavouriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({ isFav: isFavoured });
+  }, [isFavoured]);
 
   return (
     <View style={styles.screenContainer}>
@@ -56,8 +74,10 @@ const ItemDetailsScreen = (props) => {
 };
 
 ItemDetailsScreen.navigationOptions = (navigationData) => {
-  const itemId = navigationData.navigation.getParam('itemId');
+  //const itemId = navigationData.navigation.getParam('itemId');
   const mealTitle = navigationData.navigation.getParam('mealTitle');
+  const toggleFavourite = navigationData.navigation.getParam('toggleFavourite');
+  const isFavourite = navigationData.navigation.getParam('isFav');
 
   return {
     headerTitle: mealTitle,
@@ -65,8 +85,8 @@ ItemDetailsScreen.navigationOptions = (navigationData) => {
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title='favourite'
-          iconName='ios-star'
-          onPress={() => console.log('marked as favourite')}
+          iconName={isFavourite ? 'ios-star' : 'ios-star-outline'}
+          onPress={toggleFavourite}
         />
       </HeaderButtons>
     ),
@@ -108,7 +128,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     borderColor: '#ddd',
     borderWidth: 1,
-    borderRadius: 5,
+    //borderRadius: 5,
+    borderTopRightRadius: 90,
+    borderBottomRightRadius: 90,
     padding: 10,
   },
   customItemText: {

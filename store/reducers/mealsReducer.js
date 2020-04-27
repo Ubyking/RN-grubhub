@@ -1,4 +1,5 @@
 import { MEALS } from '../../data/dummydata';
+import { TOGGLE_FAVOURITE } from '../actions/MealsActions';
 
 const initialState = {
   meals: MEALS,
@@ -7,6 +8,26 @@ const initialState = {
 };
 
 const mealsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case TOGGLE_FAVOURITE:
+      const existingIndex = state.favouriteMeals.findIndex(
+        (meal) => meal.id === action.mealId
+      );
+      if (existingIndex >= 0) {
+        const updatedFavMeals = [...state.favouriteMeals];
+        updatedFavMeals.splice(existingIndex, 1);
+        return { ...state, favouriteMeals: updatedFavMeals };
+      } else {
+        return {
+          ...state,
+          favouriteMeals: state.favouriteMeals.concat(
+            state.meals.find((meal) => meal.id === action.mealId)
+          ),
+        };
+      }
+    default:
+      return state;
+  }
   return state;
 };
 
